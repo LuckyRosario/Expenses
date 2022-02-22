@@ -1,7 +1,10 @@
-import ExpenseItem from "./components/ExpenseItem";
+import React from 'react';
 
-function App()  {
-const expenses = [
+import NewExpense from "./components/NewExpense/NewExpense"
+import Expenses from './components/Expenses/Expenses';
+
+export default function App() {
+  const expenses = [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -22,19 +25,26 @@ const expenses = [
       date: new Date(2021, 5, 12),
     },
   ];
-  const items = expenses.map(expense => {
-    return (
-      <ExpenseItem 
-      key={expense.id}
-      title={expense.title} 
-      amount={expense.amount} 
-      date={expense.date} />
-    );
-  })
-return (
-  <div>
-    {items}
-  </div>
-    )}
 
-export default App;
+  const addExpenseHandler = expense => {
+    console.log('In App.js')
+    console.log(expense)
+  }
+
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   React.createElement('h2', {}, "Let's get started!"),
+  //   React.createElement(Expenses, { items: expenses })
+  // );
+
+  return (
+    <div>
+      <h2>Let's get started!</h2>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
+    </div>
+  );
+}
+
+
